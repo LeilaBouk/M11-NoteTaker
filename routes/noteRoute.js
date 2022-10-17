@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require("fs");
 const noteData = require("../db/db.json");
 const router = express.Router();
-const uuid = require('../helpers/uuid')
+const uuid = require('../helpers/uuid.js')
 
 router.get('/api/notes', (req, res) => {
     fs.readFile(noteData).then((data) => res.json(JSON.parse(data)));
@@ -17,8 +17,10 @@ router.post('/api/notes', (req, res) => {
         const userNote = {
             title,
             text,
-            id: uuid()
+            id: uuid(),
         }
+
+        readAndAppend(userNote, noteData);
     }
 })
 

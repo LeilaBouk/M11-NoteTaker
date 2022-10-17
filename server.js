@@ -12,7 +12,7 @@ const app = express();
 const noteData = require("./db/db.json");
 const router = require("./routes/noteRoute");
 
-const uuid = require('../helpers/uuid');
+const uuid = require('./helpers/uuid');
 
 // Middleware for parsing application/json and urlencoded data
 app.use(express.json());
