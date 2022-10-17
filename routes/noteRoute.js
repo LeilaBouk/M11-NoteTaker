@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require("fs");
 const noteData = require("../db/db.json");
 const router = express.Router();
+const uuid = require('../helpers/uuid')
 
 router.get('/api/notes', (req, res) => {
     fs.readFile(noteData).then((data) => res.json(JSON.parse(data)));
@@ -20,3 +21,5 @@ router.post('/api/notes', (req, res) => {
         }
     }
 })
+
+module.exports = router;
