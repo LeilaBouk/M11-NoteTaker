@@ -6,15 +6,21 @@ const express = require('express');
 const path = require('path');
 const fs = require("fs");
 
-// Require the database
-const noteData = require("./db/db.json");
-
 const app = express();
 
-// Middleware stuff
+// Require the database & routes
+const noteData = require("./db/db.json");
+const router = require("./routes/noteRoute");
+
+const uuid = require('../helpers/uuid');
+
+// Middleware for parsing application/json and urlencoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/api', router)
+
+// Serves static files from the public folder
 app.use(express.static('public'));
 
 // Routes
